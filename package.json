@@ -1,6 +1,6 @@
 {
     "name": "taro-react-virtual-list",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "private": false,
     "description": "A high-performance virtual list component for Taro React, optimized for mini-programs (WeChat, Alipay, etc.)",
     "keywords": [
