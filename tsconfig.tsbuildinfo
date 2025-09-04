@@ -1,0 +1,1 @@
+{"root":["./src/components/index.ts","./src/components/virtuallist/index.tsx","./src/components/virtuallist/components/virtualitem.tsx","./src/components/virtuallist/hooks/usevirtuallist.ts","./src/components/virtuallist/types/index.ts","./src/components/virtuallist/utils/virtuallist.ts"],"version":"5.9.2"}

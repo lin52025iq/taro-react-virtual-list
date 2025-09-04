@@ -1,0 +1,98 @@
+{
+    "name": "taro-react-virtual-list",
+    "version": "1.0.0",
+    "private": false,
+    "description": "A high-performance virtual list component for Taro React, optimized for mini-programs (WeChat, Alipay, etc.)",
+    "keywords": [
+        "taro",
+        "react",
+        "virtual-list",
+        "virtualization",
+        "mini-program",
+        "wechat",
+        "alipay",
+        "performance",
+        "scroll"
+    ],
+    "homepage": "https://github.com/lin52025i/taro-react-virtual-list#readme",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lin52025i/taro-react-virtual-list.git"
+    },
+    "bugs": {
+        "url": "https://github.com/lin52025i/taro-react-virtual-list/issues"
+    },
+    "license": "MIT",
+    "scripts": {
+        "dev:weapp": "taro build --type weapp --watch",
+        "build:lib": "tsc --build",
+        "clean": "rm -rf lib",
+        "publish:lib": "./scripts/publish.sh",
+        "test:publish": "./scripts/publish.sh --dry-run"
+    },
+    "author": {
+        "name": "lin52025i"
+    },
+    "main": "lib/components/index.js",
+    "types": "lib/components/index.d.ts",
+    "files": [
+        "lib",
+        "README.md",
+        "LICENSE"
+    ],
+    "engines": {
+        "node": ">=14.0.0",
+        "npm": ">=6.0.0"
+    },
+    "peerDependencies": {
+        "@tarojs/components": "^4.0.0",
+        "@tarojs/taro": "^4.0.0",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0"
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.24.4",
+        "@tarojs/components": "4.0.10",
+        "@tarojs/helper": "4.0.10",
+        "@tarojs/plugin-framework-react": "4.0.10",
+        "@tarojs/plugin-platform-alipay": "4.0.10",
+        "@tarojs/plugin-platform-h5": "4.0.10",
+        "@tarojs/plugin-platform-harmony-hybrid": "4.0.10",
+        "@tarojs/plugin-platform-jd": "4.0.10",
+        "@tarojs/plugin-platform-qq": "4.0.10",
+        "@tarojs/plugin-platform-swan": "4.0.10",
+        "@tarojs/plugin-platform-tt": "4.0.10",
+        "@tarojs/plugin-platform-weapp": "4.0.10",
+        "@tarojs/react": "4.0.10",
+        "@tarojs/runtime": "4.0.10",
+        "@tarojs/shared": "4.0.10",
+        "@tarojs/taro": "4.0.10",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.24.4",
+        "@babel/plugin-transform-class-properties": "7.25.9",
+        "@babel/preset-react": "^7.24.1",
+        "@tarojs/cli": "4.0.10",
+        "@tarojs/vite-runner": "4.0.10",
+        "@types/react": "^18.0.0",
+        "@typescript-eslint/eslint-plugin": "^8.40.0",
+        "@vitejs/plugin-react": "^4.3.0",
+        "babel-preset-taro": "4.0.10",
+        "eslint": "^8.57.0",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-config-taro": "4.0.10",
+        "eslint-plugin-import": "^2.32.0",
+        "eslint-plugin-prettier": "^5.5.4",
+        "eslint-plugin-react": "^7.34.1",
+        "eslint-plugin-react-hooks": "^4.4.0",
+        "postcss": "^8.4.38",
+        "react-refresh": "^0.14.0",
+        "sass": "^1.75.0",
+        "stylelint": "^16.4.0",
+        "terser": "^5.30.4",
+        "typescript": "^5.4.5",
+        "vite": "^4.2.0"
+    }
+}

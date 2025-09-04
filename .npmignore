@@ -1,0 +1,8 @@
+# 忽略所有文件
+*
+
+# 只包含要发布的文件
+!lib/
+!README.md
+!LICENSE
+!package.json
