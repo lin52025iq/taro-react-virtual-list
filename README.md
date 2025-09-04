@@ -28,11 +28,10 @@ pnpm add taro-react-virtual-list
 ### 基础用法
 
 ```tsx
-import React from 'react'
+import { Text, View } from '@tarojs/components'
 import { VirtualList } from 'taro-react-virtual-list'
 
-const MyComponent = () => {
-    // 生成测试数据
+const Index = () => {
     const data = Array.from({ length: 10000 }, (_, index) => ({
         id: index,
         text: `项目 ${index}`,
@@ -46,18 +45,24 @@ const MyComponent = () => {
         </View>
     )
 
-    return <VirtualList list={data} renderItem={renderItem} onCompleted={() => console.log('虚拟列表初始化完成')} />
+    return (
+        <View style={{ height: '100vh', overflow: 'hidden' }}>
+            <VirtualList list={data} renderItem={renderItem} onCompleted={() => console.log('虚拟列表初始化完成')} />
+        </View>
+    )
 }
+
+export default Index
 ```
 
 ### 高级用法
 
 ```tsx
-import React, { useRef, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { VirtualList, VirtualListRef } from 'taro-react-virtual-list'
-import { View, Button, Input } from '@tarojs/components'
+import { View, Button, Input, Text } from '@tarojs/components'
 
-const AdvancedExample = () => {
+const Index = () => {
     const listRef = useRef<VirtualListRef>(null)
     const [highlightIndex, setHighlightIndex] = useState(0)
 
@@ -68,19 +73,22 @@ const AdvancedExample = () => {
         category: `分类 ${index % 10}`
     }))
 
-    const renderItem = (item, pageIndex, index) => (
-        <View
-            style={{
-                padding: '15px',
-                borderBottom: '1px solid #f0f0f0',
-                backgroundColor: item.id === highlightIndex ? '#e6f7ff' : 'white'
-            }}
-            onClick={() => setHighlightIndex(item.id)}
-        >
-            <Text style={{ fontSize: '16px', fontWeight: 'bold' }}>{item.title}</Text>
-            <Text style={{ fontSize: '14px', color: '#666', marginTop: '5px' }}>{item.description}</Text>
-            <Text style={{ fontSize: '12px', color: '#999', marginTop: '5px' }}>{item.category}</Text>
-        </View>
+    const renderItem = useCallback(
+        (item, pageIndex, index) => (
+            <View
+                style={{
+                    padding: '15px',
+                    borderBottom: '1px solid #f0f0f0',
+                    backgroundColor: 'white'
+                }}
+                onClick={() => setHighlightIndex(item.id)}
+            >
+                <Text style={{ fontSize: '16px', fontWeight: 'bold' }}>{item.title}</Text>
+                <Text style={{ fontSize: '14px', color: '#666', marginTop: '5px' }}>{item.description}</Text>
+                <Text style={{ fontSize: '12px', color: '#999', marginTop: '5px' }}>{item.category}</Text>
+            </View>
+        ),
+        []
     )
 
     const scrollToItem = () => {
@@ -105,7 +113,7 @@ const AdvancedExample = () => {
             </View>
 
             {/* 虚拟列表 */}
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, overflow: 'hidden' }}>
                 <VirtualList
                     ref={listRef}
                     list={data}
@@ -121,6 +129,8 @@ const AdvancedExample = () => {
         </View>
     )
 }
+
+export default Index
 ```
 
 ## 📚 API 文档
@@ -183,26 +193,6 @@ interface ScrollInfo {
 -   搜索结果
 -   用户列表
 -   消息通知
-
-```tsx
-// 基础使用示例
-const MyList = () => {
-    const data = Array.from({ length: 10000 }, (_, index) => ({
-        id: index,
-        title: `项目 ${index}`,
-        content: `这是第${index}个项目的内容`
-    }))
-
-    const renderItem = (item, pageIndex, index) => (
-        <View style={{ padding: '10px', borderBottom: '1px solid #eee' }}>
-            <Text style={{ fontSize: '16px', fontWeight: 'bold' }}>{item.title}</Text>
-            <Text style={{ fontSize: '14px', color: '#666' }}>{item.content}</Text>
-        </View>
-    )
-
-    return <VirtualList list={data} renderItem={renderItem} guessItemHeight={60} segmentNum="smart" />
-}
-```
 
 ## ⚡ 性能优化
 

@@ -90,14 +90,3 @@ npm view taro-react-virtual-list version
 
 # 更新版本号后重新发布
 ```
-
-## 📊 发布包内容
-
-发布包包含：
-
--   `lib/` - 构建后的组件文件
--   `README.md` - 项目文档
--   `LICENSE` - MIT 许可证
--   `package.json` - 发布配置（动态生成）
-
-总大小：约 31.8 kB（压缩后）

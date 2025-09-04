@@ -5,6 +5,15 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 并且此项目遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.0.4] - 2025-01-09
+
+### 完善文档
+
+-   🔧 移除 package.json 中的自依赖，避免循环依赖问题
+-   📝 优化 README.md 中的代码示例，提升文档质量
+
+---
+
 ## [1.0.0] - 2025-09-04
 
 ### 新增

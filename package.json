@@ -1,6 +1,6 @@
 {
     "name": "taro-react-virtual-list",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "private": false,
     "description": "A high-performance virtual list component for Taro React, optimized for mini-programs (WeChat, Alipay, etc.)",
     "keywords": [
@@ -14,13 +14,13 @@
         "performance",
         "scroll"
     ],
-    "homepage": "https://github.com/lin52025i/taro-react-virtual-list#readme",
+    "homepage": "https://github.com/lin52025iq/taro-react-virtual-list#readme",
     "repository": {
         "type": "git",
-        "url": "https://github.com/lin52025i/taro-react-virtual-list.git"
+        "url": "https://github.com/lin52025iq/taro-react-virtual-list.git"
     },
     "bugs": {
-        "url": "https://github.com/lin52025i/taro-react-virtual-list/issues"
+        "url": "https://github.com/lin52025iq/taro-react-virtual-list/issues"
     },
     "license": "MIT",
     "scripts": {
@@ -31,7 +31,7 @@
         "test:publish": "./scripts/publish.sh --dry-run"
     },
     "author": {
-        "name": "lin52025i"
+        "name": "lin52025iq"
     },
     "main": "lib/components/index.js",
     "types": "lib/components/index.d.ts",
@@ -68,8 +68,7 @@
         "@tarojs/shared": "4.0.10",
         "@tarojs/taro": "4.0.10",
         "react": "^18.0.0",
-        "react-dom": "^18.0.0",
-        "taro-react-virtual-list": "^1.0.0"
+        "react-dom": "^18.0.0"
     },
     "devDependencies": {
         "@babel/core": "^7.24.4",
