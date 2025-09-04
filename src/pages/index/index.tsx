@@ -1,6 +1,7 @@
 import { useRef, useState, useCallback, useMemo, useEffect } from 'react'
-import { VirtualList, VirtualListRef } from '@/components/VirtualList'
 import { View, Button, Input } from '@tarojs/components'
+
+import { VirtualList, VirtualListRef } from '@/components'
 
 const Index: React.FC = () => {
     const listRef = useRef<VirtualListRef>(null)

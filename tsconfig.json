@@ -27,6 +27,6 @@
             "@/*": ["./src/*"]
         }
     },
-    "include": ["./src/components"],
+    "include": ["src"],
     "compileOnSave": false
 }
