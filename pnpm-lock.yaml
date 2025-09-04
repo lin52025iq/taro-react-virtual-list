@@ -62,9 +62,6 @@ importers:
       react-dom:
         specifier: ^18.0.0
         version: 18.3.1(react@18.3.1)
-      taro-react-virtual-list:
-        specifier: ^1.0.0
-        version: 1.0.0(@tarojs/components@4.0.10(@tarojs/helper@4.0.10)(@types/react@18.3.23)(postcss@8.5.6)(react@18.3.1)(rollup@3.29.5))(@tarojs/taro@4.0.10(@tarojs/components@4.0.10(@tarojs/helper@4.0.10)(@types/react@18.3.23)(postcss@8.5.6)(react@18.3.1)(rollup@3.29.5))(@tarojs/helper@4.0.10)(@tarojs/shared@4.0.10)(@types/react@18.3.23)(postcss@8.5.6)(rollup@3.29.5))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.24.4
@@ -4374,15 +4371,6 @@ packages:
   tar-stream@1.6.2:
     resolution: {integrity: sha512-rzS0heiNf8Xn7/mpdSVVSMAWAoy9bfb1WOTYC78Z0UQKeKa/CWS8FOq0lKGNa8DWKAn9gxjCvMLYc5PGXYlK2A==}
     engines: {node: '>= 0.8.0'}
-
-  taro-react-virtual-list@1.0.0:
-    resolution: {integrity: sha512-vqS9E6FOlBhtHxC8ddViiHVKjkexZM4vJjhs097deFl3hAq79RdrSDyx2ngRuPAWJ+AoFgrT4d6sgvjJ63NExA==}
-    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
-    peerDependencies:
-      '@tarojs/components': ^4.0.0
-      '@tarojs/taro': ^4.0.0
-      react: ^18.0.0
-      react-dom: ^18.0.0
 
   terser@5.43.1:
     resolution: {integrity: sha512-+6erLbBm0+LROX2sPXlUYx/ux5PyE9K/a92Wrt6oA+WDAoFTdpHE5tCYCI5PNzq2y8df4rA+QgHLJuR4jNymsg==}
@@ -9526,13 +9514,6 @@ snapshots:
       readable-stream: 2.3.8
       to-buffer: 1.2.1
       xtend: 4.0.2
-
-  taro-react-virtual-list@1.0.0(@tarojs/components@4.0.10(@tarojs/helper@4.0.10)(@types/react@18.3.23)(postcss@8.5.6)(react@18.3.1)(rollup@3.29.5))(@tarojs/taro@4.0.10(@tarojs/components@4.0.10(@tarojs/helper@4.0.10)(@types/react@18.3.23)(postcss@8.5.6)(react@18.3.1)(rollup@3.29.5))(@tarojs/helper@4.0.10)(@tarojs/shared@4.0.10)(@types/react@18.3.23)(postcss@8.5.6)(rollup@3.29.5))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
-    dependencies:
-      '@tarojs/components': 4.0.10(@tarojs/helper@4.0.10)(@types/react@18.3.23)(postcss@8.5.6)(react@18.3.1)(rollup@3.29.5)
-      '@tarojs/taro': 4.0.10(@tarojs/components@4.0.10(@tarojs/helper@4.0.10)(@types/react@18.3.23)(postcss@8.5.6)(react@18.3.1)(rollup@3.29.5))(@tarojs/helper@4.0.10)(@tarojs/shared@4.0.10)(@types/react@18.3.23)(postcss@8.5.6)(rollup@3.29.5)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
 
   terser@5.43.1:
     dependencies:
