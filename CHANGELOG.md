@@ -5,7 +5,15 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 并且此项目遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
-## [1.0.4] - 2025-01-09
+## [1.0.5] - 2025-09-30
+
+### 新增
+
+-   🚀 增加 scrollToOffset 方法支持滚动到指定像素位置
+
+---
+
+## [1.0.4] - 2025-09-09
 
 ### 完善文档
 
