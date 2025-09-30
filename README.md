@@ -160,6 +160,7 @@ export default Index
 | 方法                 | 参数                                  | 返回值                | 描述                 |
 | -------------------- | ------------------------------------- | --------------------- | -------------------- |
 | `scrollTo`           | `(index: number, offsetTop?: number)` | `Promise<boolean>`    | 滚动到指定索引位置   |
+| `scrollToOffset`     | `(scrollTop: number)`                 | `Promise<true>`       | 滚动到指定像素值     |
 | `scrollIntoView`     | `(index: number, offsetTop?: number)` | `Promise<boolean>`    | 将指定项滚动到视图中 |
 | `getItemScrollTop`   | `(index: number)`                     | `IItemScrollTop`      | 获取指定项的滚动信息 |
 | `updateHeaderHeight` | `()`                                  | `Promise<void>`       | 更新头部高度         |
