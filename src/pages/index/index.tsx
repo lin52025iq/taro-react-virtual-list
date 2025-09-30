@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useMemo, useEffect } from 'react'
+import { useRef, useState, useCallback, useEffect } from 'react'
 import { View, Button, Input } from '@tarojs/components'
 
 import { VirtualList, VirtualListRef } from '@/components'
@@ -14,17 +14,32 @@ const Index: React.FC = () => {
         scrollHeight: number
         scrollTop: number
     } | null>(null)
+    // 滚动位置输入
+    const [scrollPosition, setScrollPosition] = useState<string>('0')
+    const [isRenderCompleted, setIsRenderCompleted] = useState(false)
 
-    // 生成测试数据
-    const data = useMemo(
-        () =>
-            Array.from({ length: 10000 }, (_, index) => ({
-                id: index,
-                text: `项目 ${index}`,
-                content: `这是第${index}个项目的内容`.repeat(Math.floor(index / 100) + 1)
-            })),
-        []
+    const dataVersion = useRef(0)
+
+    const [data, setData] = useState<{ id: number; text: string; content: string }[]>(
+        Array.from({ length: 10000 }, (_, index) => ({
+            id: index,
+            text: `项目 ${index} version:${dataVersion.current}`,
+            content: `这是第${index}个项目的内容`.repeat(Math.floor(index / 100) + 1)
+        }))
     )
+
+    const updateData = useCallback(() => {
+        setIsCompleted(false)
+        setIsRenderCompleted(false)
+        setData((prev) => {
+            const newList = prev.map((item) => ({
+                ...item,
+                text: `项目 ${item.id} version:${dataVersion.current}`
+            }))
+            return newList
+        })
+        dataVersion.current += 1
+    }, [])
 
     // 检查高亮项位置的函数
     const checkHighlightPosition = useCallback(async () => {
@@ -141,9 +156,13 @@ const Index: React.FC = () => {
         )
     }, [])
 
-    const handleCompleted = useCallback(() => {
+    const handleCompleted = useCallback(async () => {
+        if (!isRenderCompleted && isCompleted) {
+            await listRef.current!.scrollToOffset(scrollInfo?.scrollTop || 0)
+            setIsRenderCompleted(true)
+        }
         setIsCompleted(true)
-    }, [])
+    }, [scrollInfo, isRenderCompleted, isCompleted])
 
     // 处理输入框变化
     const handleHighlightIndexChange = useCallback(
@@ -163,6 +182,21 @@ const Index: React.FC = () => {
             listRef.current?.scrollTo(highlightIndex)
         }
     }, [isCompleted, highlightIndex])
+
+    // 滚动到指定像素位置
+    const scrollToOffset = useCallback(async () => {
+        if (listRef.current && isCompleted) {
+            const position = parseInt(scrollPosition, 10)
+            if (!Number.isNaN(position)) {
+                await listRef.current.scrollToOffset(position)
+            }
+        }
+    }, [scrollPosition, isCompleted])
+
+    // 处理滚动位置输入变化
+    const handleScrollPositionChange = useCallback((e: any) => {
+        setScrollPosition(e.detail.value)
+    }, [])
 
     // 手动刷新位置信息
     const refreshPosition = useCallback(() => {
@@ -199,7 +233,49 @@ const Index: React.FC = () => {
                     >
                         定位
                     </Button>
-                    <View style={{ fontSize: '12px', color: '#999' }}>(0-{data.length - 1})</View>
+                    <Button
+                        size="mini"
+                        type="primary"
+                        onClick={updateData}
+                        disabled={!isCompleted}
+                        style={{ margin: 0, fontSize: '12px' }}
+                    >
+                        更新数据
+                    </Button>
+                </View>
+
+                {/* 滚动位置输入控制区域 */}
+                <View style={{ display: 'flex', alignItems: 'center', gap: '8px', marginRight: '15px' }}>
+                    <View style={{ fontSize: '14px', color: '#333', whiteSpace: 'nowrap' }}>滚动位置(px):</View>
+                    <Input
+                        type="number"
+                        value={scrollPosition}
+                        placeholder="输入像素值"
+                        onInput={handleScrollPositionChange}
+                        style={{
+                            width: '80px',
+                            height: '32px',
+                            border: '1px solid #d9d9d9',
+                            borderRadius: '4px',
+                            padding: '0 8px',
+                            fontSize: '14px',
+                            textAlign: 'center'
+                        }}
+                    />
+                    <Button
+                        size="mini"
+                        type="primary"
+                        onClick={scrollToOffset}
+                        disabled={!isCompleted}
+                        style={{ margin: 0, fontSize: '12px' }}
+                    >
+                        滚动位置
+                    </Button>
+                    {scrollInfo && (
+                        <View style={{ fontSize: '12px', color: '#999' }}>
+                            (0-{scrollInfo.scrollHeight - scrollInfo.height}px)
+                        </View>
+                    )}
                 </View>
 
                 {/* 高亮项位置显示区域 */}
@@ -259,7 +335,7 @@ const Index: React.FC = () => {
                 >
                     <View>视口高度: {scrollInfo.height}px</View>
                     <View>滚动高度: {scrollInfo.scrollHeight}px</View>
-                    <View>当前滚动: {scrollInfo.scrollTop}px</View>
+                    <View>当前滚动: {scrollInfo.scrollTop.toFixed(0)}px</View>
                     <View>高亮项索引: {highlightIndex}</View>
                 </View>
             )}

@@ -131,6 +131,9 @@ export interface VirtualListRef {
     /** 将指定位置的列表项滚动到视图中，如果已在视图里则不会滚动，不在视图里则滚动到顶部 */
     scrollIntoView: (index: number, offsetTop?: number) => Promise<boolean>
 
+    /** 滚动到指定的像素位置 */
+    scrollToOffset: (scrollTop: number) => Promise<boolean>
+
     /** 获取指定项的滚动信息 */
     getItemScrollTop: (index: number) => IItemScrollTop
 

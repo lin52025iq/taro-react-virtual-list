@@ -167,12 +167,10 @@ export const useVirtualList = <T>({
             if (!elementExists && retryCount < 3) {
                 // 移除创建状态标记
                 observerCreatingRef.current.delete(index)
-                setTimeout(
-                    () => {
-                        createIntersectionObserver(index, retryCount + 1)
-                    },
-                    50 + retryCount * 50
-                )
+                const time = 50 + retryCount * 50
+                setTimeout(() => {
+                    createIntersectionObserver(index, retryCount + 1)
+                }, time)
                 return
             }
 
@@ -274,6 +272,44 @@ export const useVirtualList = <T>({
             }
         },
         [screenNum, windowHeight, selectorUtils, guessItemHeight, queryUtils, initHeight]
+    )
+
+    // 滚动到指定像素位置
+    const scrollToOffset = useCallback(
+        async (scrollTop: number): Promise<boolean> => {
+            if (!isCompleted) return false
+
+            try {
+                // 获取当前滚动信息
+                const scrollInfo = await queryUtils.getScrollViewInfo()
+                const maxScrollTop = Math.max(0, scrollInfo.scrollHeight - scrollInfo.height)
+
+                // 边界检查：确保滚动位置不超过最大可滚动高度
+                const targetScrollTop = Math.min(Math.max(scrollTop, 0), maxScrollTop)
+
+                // 获取 ScrollView 节点并执行滚动
+                const scrollViewNode = await queryUtils.getScrollViewNode()
+
+                if (scrollViewNode?.scrollTo) {
+                    scrollViewNode.scrollTo({
+                        top: targetScrollTop,
+                        animated: false
+                    })
+
+                    // 触发滚动结束回调
+                    execIfFunction(onScrollToEnd)
+                    return true
+                } else {
+                    return false
+                }
+            } catch (error) {
+                if (process.env.NODE_ENV === 'development') {
+                    console.error('scrollToOffset 错误:', error)
+                }
+                return false
+            }
+        },
+        [isCompleted, queryUtils, onScrollToEnd]
     )
 
     // 初始化渲染列表
@@ -742,6 +778,7 @@ export const useVirtualList = <T>({
         return {
             scrollTo,
             scrollIntoView,
+            scrollToOffset,
             getItemScrollTop,
             updateHeaderHeight,
             updateRenderList,
@@ -751,6 +788,7 @@ export const useVirtualList = <T>({
     }, [
         scrollTo,
         scrollIntoView,
+        scrollToOffset,
         getItemScrollTop,
         updateHeaderHeight,
         updateRenderList,
